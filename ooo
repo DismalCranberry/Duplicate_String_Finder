@@ -1,0 +1,49 @@
+C++ Advanced – Regular Exam – 8 February 2025
+Please submit your source code to all below-described problem here:
+https://judge.softuni.org/Contests/Compete/Index/5492#2
+Inventor
+Write a program that calculates the total price of products for multiple cities. 
+The program should take the following inputs:
+The first input is the number of cities.
+For each city, the program will then accept the name of the city.
+The price per product for that city.
+The quantity of products purchased in that city.
+The program should calculate the total cost for each city by multiplying the price per product by the quantity of products and display the result.
+Input
+On the first line you will receive the cities count.
+On the next lines you will receive the cities, followed by the price per product and quantity of products.
+Output
+Print the city followed by the total price in the following format: "{city} {total price}"
+Examples
+Input
+Output
+2
+sofia
+5
+1
+plovdiv
+3
+2
+plovdiv 6
+sofia 5
+3
+Sofia
+5
+10
+Plovdiv
+6
+2
+Sofia
+1
+5
+Plovdiv
+4
+2
+Varna
+3
+2
+Plovdiv 20
+Sofia 55
+Varna 6
+
+
