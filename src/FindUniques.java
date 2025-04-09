@@ -30,10 +30,9 @@ public class FindNonDuplicates {
         Set<String> uniqueStrings = new HashSet<>();
         Set<String> duplicates = new HashSet<>();
 
-        // Read through each line in the file.
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
-            // If the line was already in uniqueStrings, add it to duplicates.
+           
             if (!uniqueStrings.add(line)) {
                 duplicates.add(line);
             }
