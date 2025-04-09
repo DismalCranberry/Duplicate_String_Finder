@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+
+public class FindDuplicatesAndNonDuplicates {
+    public static void main(String[] args) {
+
+        String inputFilePath = "String_Input.txt";
+        String duplicatesOutputFilePath = "Duplicates_Output.txt";
+        String nonDuplicatesOutputFilePath = "NonDuplicates_Output.txt";
+
+        try {
+            File inputFile = new File(inputFilePath);
+            Scanner scanner = new Scanner(inputFile);
+
+            // Sets to track all unique strings and duplicates encountered
+            Set<String> uniqueStrings = new HashSet<>();
+            Set<String> duplicates = new HashSet<>();
+
+            // Process the file line by line
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+                // If the string is already in uniqueStrings, it’s a duplicate.
+                if (!uniqueStrings.add(line)) {
+                    duplicates.add(line);
+                }
+            }
+            scanner.close();
+
+            // Identify non-duplicate strings by subtracting duplicates from uniqueStrings
+            Set<String> nonDuplicates = new HashSet<>(uniqueStrings);
+            nonDuplicates.removeAll(duplicates);
+
+            // Write duplicate strings to the first output file.
+            FileWriter dupWriter = new FileWriter(duplicatesOutputFilePath);
+            if (duplicates.isEmpty()) {
+                dupWriter.write("No duplicate entries found.\n");
+            } else {
+                dupWriter.write("Duplicates:\n");
+                for (String duplicate : duplicates) {
+                    dupWriter.write(duplicate + "\n");
+                }
+            }
+            dupWriter.close();
+
+            // Write non-duplicate strings to the second output file.
+            FileWriter nonDupWriter = new FileWriter(nonDuplicatesOutputFilePath);
+            if (nonDuplicates.isEmpty()) {
+                nonDupWriter.write("No non duplicate entries found.\n");
+            } else {
+                nonDupWriter.write("Non-duplicate entries:\n");
+                for (String nonDuplicate : nonDuplicates) {
+                    nonDupWriter.write(nonDuplicate + "\n");
+                }
+            }
+            nonDupWriter.close();
+
+            System.out.println("Duplicates have been written to the file: " + duplicatesOutputFilePath);
+            System.out.println("Non duplicate entries have been written to the file: " + nonDuplicatesOutputFilePath);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("The input file " + inputFilePath + " was not found.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the output file: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+}
