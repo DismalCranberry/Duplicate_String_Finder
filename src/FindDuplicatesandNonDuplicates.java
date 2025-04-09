@@ -12,25 +12,21 @@ public class FindDuplicatesAndNonDuplicates {
             File inputFile = new File(inputFilePath);
             Scanner scanner = new Scanner(inputFile);
 
-            // Sets to track all unique strings and duplicates encountered
             Set<String> uniqueStrings = new HashSet<>();
             Set<String> duplicates = new HashSet<>();
 
-            // Process the file line by line
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
-                // If the string is already in uniqueStrings, it’s a duplicate.
+  
                 if (!uniqueStrings.add(line)) {
                     duplicates.add(line);
                 }
             }
             scanner.close();
 
-            // Identify non-duplicate strings by subtracting duplicates from uniqueStrings
             Set<String> nonDuplicates = new HashSet<>(uniqueStrings);
             nonDuplicates.removeAll(duplicates);
 
-            // Write duplicate strings to the first output file.
             FileWriter dupWriter = new FileWriter(duplicatesOutputFilePath);
             if (duplicates.isEmpty()) {
                 dupWriter.write("No duplicate entries found.\n");
@@ -42,7 +38,6 @@ public class FindDuplicatesAndNonDuplicates {
             }
             dupWriter.close();
 
-            // Write non-duplicate strings to the second output file.
             FileWriter nonDupWriter = new FileWriter(nonDuplicatesOutputFilePath);
             if (nonDuplicates.isEmpty()) {
                 nonDupWriter.write("No non duplicate entries found.\n");
