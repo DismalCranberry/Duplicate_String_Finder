@@ -7,7 +7,7 @@ public class FindDuplicatesAndNonDuplicates {
         String inputFilePath = "String_Input.txt";  
         String duplicatesOutputFilePath = "Duplicates_Output.txt"; //Prints only duplicate strings
         String nonDuplicatesOutputFilePath = "NonDuplicates_Output.txt"; //prints non-duplicate strings
-        String uniqueOutputFilePath = "Unique_Output.txt"; //Prints all strings but once
+        String uniqueOutputFilePath = "Unique_Output.txt"; //Prints all strings once
   
         try {  
             File inputFile = new File(inputFilePath);  
