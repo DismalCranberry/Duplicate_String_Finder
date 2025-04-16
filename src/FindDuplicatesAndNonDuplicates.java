@@ -5,33 +5,28 @@ public class FindDuplicatesAndNonDuplicates {
     public static void main(String[] args) {  
   
         String inputFilePath = "String_Input.txt";  
-        String duplicatesOutputFilePath = "Duplicates_Output.txt";  
-        String nonDuplicatesOutputFilePath = "NonDuplicates_Output.txt";  
-        String uniqueOutputFilePath = "Unique_Output.txt";  // New output file for unique strings
+        String duplicatesOutputFilePath = "Duplicates_Output.txt"; //Prints only duplicate strings
+        String nonDuplicatesOutputFilePath = "NonDuplicates_Output.txt"; //prints non duplicate strings
+        String uniqueOutputFilePath = "Unique_Output.txt"; //Prints all strings but once
   
         try {  
             File inputFile = new File(inputFilePath);  
             Scanner scanner = new Scanner(inputFile);  
   
-            // Use LinkedHashSet to preserve the insertion order
             Set<String> uniqueStrings = new LinkedHashSet<>();  
             Set<String> duplicates = new HashSet<>();  
   
             while (scanner.hasNextLine()) {  
                 String line = scanner.nextLine().trim();  
-                // If add returns false, line already existed, so add it to duplicates
                 if (!uniqueStrings.add(line)) {  
                     duplicates.add(line);  
                 }  
             }  
             scanner.close();  
   
-            // For the non-duplicate file, create a set containing entries that occurred only once
-            // Since uniqueStrings is a LinkedHashSet, we preserve the order here if needed.
             Set<String> nonDuplicates = new LinkedHashSet<>(uniqueStrings);  
             nonDuplicates.removeAll(duplicates);  
-  
-            // Write duplicates to file  
+
             FileWriter dupWriter = new FileWriter(duplicatesOutputFilePath);  
             if (duplicates.isEmpty()) {  
                 dupWriter.write("No duplicate entries found.\n");  
@@ -42,8 +37,7 @@ public class FindDuplicatesAndNonDuplicates {
                 }  
             }  
             dupWriter.close();  
-  
-            // Write non-duplicates to file  
+
             FileWriter nonDupWriter = new FileWriter(nonDuplicatesOutputFilePath);  
             if (nonDuplicates.isEmpty()) {  
                 nonDupWriter.write("No non duplicate entries found.\n");  
@@ -54,8 +48,7 @@ public class FindDuplicatesAndNonDuplicates {
                 }  
             }  
             nonDupWriter.close();  
-  
-            // New: Write unique strings (all strings printed once without repeating) to file  
+
             FileWriter uniqueWriter = new FileWriter(uniqueOutputFilePath);  
             uniqueWriter.write("Unique entries:\n");  
             for (String unique : uniqueStrings) {  
